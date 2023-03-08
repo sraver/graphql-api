@@ -8,17 +8,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export interface TransferNftInput {
-    nft?: Nullable<string>;
-    toUser?: Nullable<string>;
-}
-
 export interface IQuery {
-    nfts(): Nullable<Nullable<Nft>[]> | Promise<Nullable<Nullable<Nft>[]>>;
+    nfts(page?: Nullable<number>, count?: Nullable<number>): Nullable<Nullable<Nft>[]> | Promise<Nullable<Nullable<Nft>[]>>;
 }
 
 export interface IMutation {
-    transferNft(transferNftInput?: Nullable<TransferNftInput>): Nullable<boolean> | Promise<Nullable<boolean>>;
+    transferNft(nft?: Nullable<string>, toUser?: Nullable<string>): Nullable<boolean> | Promise<Nullable<boolean>>;
 }
 
 export interface Nft {

@@ -4,12 +4,12 @@ import { Symbols } from '../../../config/symbols';
 import { NftRepository } from '../../domain/nft-repository';
 
 @Injectable()
-export class FetchAll {
+export class FetchNfts {
   constructor(
     @Inject(Symbols.NftsRepository) private readonly repository: NftRepository,
   ) {}
 
-  execute(): Promise<Nft[]> {
-    return this.repository.fetchAll();
+  execute(page: number, count: number): Promise<Nft[]> {
+    return this.repository.fetch(page, count);
   }
 }

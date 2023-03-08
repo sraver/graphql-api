@@ -1,9 +1,9 @@
 type Query {
-    nfts: [Nft]
+    nfts(page: Int, count: Int): [Nft]
 }
 
 type Mutation {
-    transferNft(transferNftInput: TransferNftInput): Boolean
+    transferNft(nft: String, toUser: String): Boolean
 }
 
 type Nft {
@@ -12,9 +12,4 @@ type Nft {
     description: String
     imageUrl: String
     mintDate: String
-}
-
-input TransferNftInput {
-    nft: String
-    toUser: String
 }

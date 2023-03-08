@@ -7,22 +7,27 @@ import { Nft, NftId, UserId } from '../../../domain/nft';
 export class NftsRepositoryMysql implements NftRepository {
   constructor(private readonly manager: EntityManager) {}
 
-  fetchAll(): Promise<Nft[]> {
-    return this.manager.find(NftEntity).then((rows) => {
-      return rows.map((row) => {
-        const nft = new Nft();
+  fetch(page: number, count: number): Promise<Nft[]> {
+    return this.manager
+      .find(NftEntity, {
+        skip: (page - 1) * count,
+        take: count,
+      })
+      .then((rows) => {
+        return rows.map((row) => {
+          const nft = new Nft();
 
-        nft.id = row.id;
-        nft.name = row.name;
-        nft.blockchainLink = row.blockchainLink;
-        nft.description = row.description;
-        nft.imageUrl = row.imageUrl;
-        nft.owner = row.owner;
-        nft.mintDate = row.mintDate;
+          nft.id = row.id;
+          nft.name = row.name;
+          nft.blockchainLink = row.blockchainLink;
+          nft.description = row.description;
+          nft.imageUrl = row.imageUrl;
+          nft.owner = row.owner;
+          nft.mintDate = row.mintDate;
 
-        return nft;
+          return nft;
+        });
       });
-    });
   }
 
   transfer(id: NftId, to: UserId): Promise<boolean> {
