@@ -1,4 +1,4 @@
-import { Nft } from '../../domain/nft';
+import { Nft, UserId } from '../../domain/nft';
 import { Inject, Injectable } from '@nestjs/common';
 import { Symbols } from '../../../config/symbols';
 import { NftRepository } from '../../domain/nft-repository';
@@ -9,7 +9,7 @@ export class FetchNfts {
     @Inject(Symbols.NftsRepository) private readonly repository: NftRepository,
   ) {}
 
-  execute(page: number, count: number): Promise<Nft[]> {
-    return this.repository.fetch(page, count);
+  execute(user: UserId, page: number, count: number): Promise<Nft[]> {
+    return this.repository.fetch(user, page, count);
   }
 }

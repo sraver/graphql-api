@@ -9,7 +9,7 @@ export class LoginController {
   @Post('/auth/login')
   @UseGuards(LocalAuthGuard)
   async login(@Request() req) {
-    const token = this.tokenGenerator.execute(req.user.user);
+    const token = this.tokenGenerator.execute(req.user.id);
     return {
       token: token,
     };
