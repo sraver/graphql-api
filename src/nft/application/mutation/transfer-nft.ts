@@ -9,7 +9,7 @@ export class TransferNft {
     @Inject(Symbols.NftsRepository) private readonly repository: NftRepository,
   ) {}
 
-  execute(id: NftId, to: UserId): Promise<boolean> {
-    return this.repository.transfer(id, to);
+  execute(user: UserId, id: NftId, to: UserId): Promise<boolean> {
+    return this.repository.transfer(user, id, to);
   }
 }

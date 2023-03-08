@@ -34,12 +34,13 @@ export class NftsRepositoryMysql implements NftRepository {
       });
   }
 
-  transfer(id: NftId, to: UserId): Promise<boolean> {
+  transfer(user: UserId, id: NftId, to: UserId): Promise<boolean> {
     return this.manager
       .update(
         NftEntity,
         {
           id: id,
+          owner: user,
         },
         {
           owner: to,

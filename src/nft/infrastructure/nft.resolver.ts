@@ -38,7 +38,8 @@ export class NftResolver {
   transfer(
     @Args('nft') nft: string,
     @Args('toUser') toUser: string,
+    @AuthenticatedUser() user,
   ): Promise<boolean> {
-    return this.transferNft.execute(nft, toUser);
+    return this.transferNft.execute(user.id, nft, toUser);
   }
 }
