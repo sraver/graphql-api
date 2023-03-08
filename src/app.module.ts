@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import dbConfig from './config/db.config';
+import { NftModule } from './nft/nft.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import dbConfig from './config/db.config';
         path: join(process.cwd(), 'src/graphql.ts'),
       },
     }),
+    NftModule,
   ],
 })
 export class AppModule {}
