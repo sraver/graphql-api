@@ -1,9 +1,12 @@
+export type NftId = string;
+export type UserId = string;
+
 export class Nft {
-  id: string;
+  id: NftId;
   name: string;
   blockchainLink: string;
   description: string;
   imageUrl: string;
-  owner: string;
+  owner: UserId;
   mintDate: Date;
 }

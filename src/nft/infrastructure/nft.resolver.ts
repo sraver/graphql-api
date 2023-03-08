@@ -1,10 +1,14 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { FetchAll } from '../application/query/fetch-all';
+import { TransferNft } from '../application/mutation/transfer-nft';
 import { Nft } from '../../graphql';
 
 @Resolver('Nft')
 export class NftResolver {
-  constructor(private readonly nftFetcher: FetchAll) {}
+  constructor(
+    private readonly nftFetcher: FetchAll,
+    private readonly transferNft: TransferNft,
+  ) {}
 
   @Query('nfts')
   getNfts(): Promise<Nft[]> {
@@ -19,5 +23,12 @@ export class NftResolver {
         };
       });
     });
+  }
+
+  @Mutation('transferNft')
+  transfer(
+    @Args('transferNftInput') input: { nft: string; toUser: string },
+  ): Promise<boolean> {
+    return this.transferNft.execute(input.nft, input.toUser);
   }
 }

@@ -9,8 +9,8 @@
 /* eslint-disable */
 
 export interface TransferNftInput {
-    from?: Nullable<string>;
-    to?: Nullable<string>;
+    nft?: Nullable<string>;
+    toUser?: Nullable<string>;
 }
 
 export interface IQuery {

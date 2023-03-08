@@ -1,7 +1,7 @@
 import { EntityManager, EntityRepository } from 'typeorm';
 import { NftEntity } from '../models/nfts.entity';
 import { NftRepository } from '../../../domain/nft-repository';
-import { Nft } from '../../../domain/nft';
+import { Nft, NftId, UserId } from '../../../domain/nft';
 
 @EntityRepository(NftEntity)
 export class NftsRepositoryMysql implements NftRepository {
@@ -23,5 +23,21 @@ export class NftsRepositoryMysql implements NftRepository {
         return nft;
       });
     });
+  }
+
+  transfer(id: NftId, to: UserId): Promise<boolean> {
+    return this.manager
+      .update(
+        NftEntity,
+        {
+          id: id,
+        },
+        {
+          owner: to,
+        },
+      )
+      .then((result) => {
+        return result.affected > 0;
+      });
   }
 }
