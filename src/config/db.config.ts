@@ -11,7 +11,7 @@ export default (): MysqlConnectionOptions => ({
   ssl: process.env.NODE_ENV === 'production',
   entities: ['dist/**/infrastructure/database/models/*.entity.{ts,js}'],
   migrationsTableName: 'migrations',
-  migrations: ['migrations/*.ts'],
+  migrations: ['dist/migrations/*.ts'],
   synchronize: false,
   dropSchema: false,
 });
