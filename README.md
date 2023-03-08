@@ -26,11 +26,11 @@ $ make stop
 ## Decisions log
 
 - A database is required to run the API, Docker is used to spin a local instance of MariaDB.
-- The code has been organized using an approach based on Domain Driven Design principles.
-- To define the schema of the GraphQL server, a `Schema first` approach is used because I like to have the definition
-explicitly defined, plus in my opinion it makes it less verbose when you have response objects that don't follow the 
-definition than your domain objects.
-- The protected endpoint from the `Nft` module can only be accessed when a valid JWT is used. When that is the case,
+- The code has been organized using a Domain Driven Design approach.
+- To define the schema of the GraphQL server, a `Schema first` approach is used because I like to have the schema to be 
+explicitly defined, plus in my opinion, it makes it less verbose when there are response objects that don't follow the 
+definition of your domain objects.
+- The protected endpoints from the `Nft` module can only be accessed when a valid JWT is used. When that is the case,
 the user can only list and transfer its own assets.
 - There is no unit tests because there is no real domain logic implemented on the application or domain layer. 
 Integration tests would be interesting on this solution, but these were not the purpose of this example.
