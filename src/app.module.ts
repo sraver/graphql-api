@@ -5,6 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import dbConfig from './config/db.config';
 import { NftModule } from './nft/nft.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { NftModule } from './nft/nft.module';
       },
     }),
     NftModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
