@@ -5,14 +5,13 @@ import { Nft, NftId, UserId } from '../../../domain/nft';
 
 @EntityRepository(NftEntity)
 export class NftsRepositoryMysql implements NftRepository {
-  constructor(private readonly manager: EntityManager) {
-  }
+  constructor(private readonly manager: EntityManager) {}
 
   fetch(user: UserId, page: number, count: number): Promise<Nft[]> {
     return this.manager
       .find(NftEntity, {
         where: {
-          id: user,
+          owner: user,
         },
         skip: (page - 1) * count,
         take: count,
