@@ -53,8 +53,6 @@ explicitly defined, plus in my opinion, it makes it less verbose when there are 
 definition of your domain objects.
 - The protected endpoints from the `Nft` module can only be accessed when a valid JWT is used. When that is the case,
 the user can only list and transfer its own assets.
-- There is no unit tests because there is no real domain logic implemented on the application or domain layer. 
-Integration tests would be interesting on this solution, but these were not the purpose of this example.
 
 ## Possible improvements
 
